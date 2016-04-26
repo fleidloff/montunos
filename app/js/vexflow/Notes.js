@@ -55,6 +55,9 @@ export default class Notes {
                 case key.indexOf("b") > 0:
                     note.addAccidental(idx, new Vex.Flow.Accidental("b"));
                     break;
+                case key.indexOf("n") > 0:
+                    note.addAccidental(idx, new Vex.Flow.Accidental("n"));
+                    break;
             }
         });
         this.notes.push(note);
