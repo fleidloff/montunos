@@ -1,11 +1,16 @@
 export default class Notes {
     constructor() {
         this.notes = [];
+        this.ties = [];
         this.lastDuration = "4";
     }
 
     get() {
         return this.notes;
+    }
+
+    getTies() {
+        return this.ties;
     }
 
     getWithBars(barEveryNTicks) {
@@ -57,11 +62,23 @@ export default class Notes {
 
     pushBreak({ duration }) {
         this.notes.push(
-            new Vex.Flow.StaveNote({ keys: [breakKeys[Vex.Flow.sanitizeDuration(duration)]], duration: `${duration}r` })
+            new Vex.Flow.StaveNote({ keys: [breakKey(Vex.Flow.sanitizeDuration(duration))], duration: `${duration}r` })
         );
     }
 
-    push({ keys, duration = this.lastDuration }) {
+    pushTie(tie) {
+        this.ties.push({
+            first_note: this.notes.length - 1,
+            last_note: this.notes.length - 1 + tie
+        });
+        
+    }
+
+    push({ keys, duration = this.lastDuration, tie }) {
+        if (typeof tie !== "undefined") {
+            this.pushTie(tie);
+            return this;
+        }
         duration = "" + duration;
         duration = duration.replace(".", "d");
         this.lastDuration = duration;
@@ -76,14 +93,9 @@ export default class Notes {
     }
 }
 
-const breakKeys = {
-    "1":    "d/5",
-    "2":    "b/4",
-    "4":    "b/4",
-    "8":    "b/4",
-    "16":   "b/4",
-    "32":   "b/4",
-    "64":   "b/4",
-    "128":  "b/4",
-    "256":  "b/4"
-};
+function breakKey(duration) {
+    switch(duration) {
+        case "1": return "d/5";
+        default: return "b/4";
+    }
+}

@@ -10,6 +10,7 @@ export default class Montuno extends Props {
             .push({ keys: "g/4" })
             .push({ keys: "f#/4" })
             .push({ keys: "g/4" })
+            .push({ tie: 2 })
             .push({ keys: "r"})
             .push({ keys: "d/4"})
             .push({ keys: "r"})
