@@ -1,6 +1,7 @@
 export default class Notes {
     constructor() {
         this.notes = [];
+        this.lastDuration = "4";
     }
 
     get() {
@@ -20,6 +21,7 @@ export default class Notes {
                 walkingTicks = 0;
             }
         });
+        
         return result;
     }
     
@@ -28,9 +30,29 @@ export default class Notes {
     }
 
     pushNote({ keys, duration }) {
-        this.notes.push(
-            new Vex.Flow.StaveNote({ keys: typeof keys.push === "function" ? keys : [keys], duration: ""+duration, "auto_stem": true })
-        );
+        let keysArr = typeof keys.push === "function" ? keys : [keys];
+        const note = new Vex.Flow.StaveNote({ keys: keysArr, duration: duration, "auto_stem": true });
+        keysArr.forEach((key, idx) => {
+            if (duration.indexOf("d") > 0) {
+                note.addDotToAll();
+            }
+
+            switch(true) {
+                case key.indexOf("##") > 0:
+                    note.addAccidental(idx, new Vex.Flow.Accidental("##"));
+                    break;
+                case key.indexOf("#") > 0:
+                    note.addAccidental(idx, new Vex.Flow.Accidental("#"));
+                    break;
+                case key.indexOf("bb") > 0:
+                    note.addAccidental(idx, new Vex.Flow.Accidental("bb"));
+                    break;
+                case key.indexOf("b") > 0:
+                    note.addAccidental(idx, new Vex.Flow.Accidental("b"));
+                    break;
+            }
+        });
+        this.notes.push(note);
     }
 
     pushBreak({ duration }) {
@@ -39,7 +61,11 @@ export default class Notes {
         );
     }
 
-    push({ keys, duration}) {
+    push({ keys, duration = this.lastDuration }) {
+        duration = "" + duration;
+        duration = duration.replace(".", "d");
+        this.lastDuration = duration;
+
         if (keys === "r") {
             this.pushBreak({ duration });
         } else {

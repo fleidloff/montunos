@@ -8,7 +8,7 @@ export default class Renderer {
         var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
         var ctx = renderer.getContext();
-        var stave = new Vex.Flow.Stave(10, 0, width - 30);
+        var stave = new Vex.Flow.Stave(10, 0, width - 20);
         stave.addClef("treble").setContext(ctx).draw();
         
 
@@ -23,7 +23,9 @@ export default class Renderer {
 
         // Format and justify the notes to 500 pixels
         var formatter = new Vex.Flow.Formatter().
-        joinVoices([voice]).format([voice], width - 15);
+        joinVoices([voice]).format([voice], width - 30);
+
+        Vex.Flow.Formatter.FormatAndDraw(ctx, stave, notes);
 
         // Render voice
         voice.draw(ctx, stave);

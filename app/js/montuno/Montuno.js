@@ -5,10 +5,21 @@ import Props from "../shared/Props";
 export default class Montuno extends Props {
     render() {
         const notes = new Notes()
-            .push({ keys: "c/5", duration: 4 })
-            .push({ keys: "d/4", duration: 4 })
-            .push({ keys: "r", duration: 4 })
-            .push({ keys: ["c/4", "e/4", "g/4"], duration: 4 });
+            .push({ keys: "g/4", duration: 4 })
+            .push({ keys: "d/4", duration: 8 })
+            .push({ keys: "g/4" })
+            .push({ keys: "f#/4" })
+            .push({ keys: "g/4" })
+            .push({ keys: "r"})
+            .push({ keys: "d/4"})
+            .push({ keys: "r"})
+            .push({ keys: "f/4"})
+            .push({ keys: "r"})
+            .push({ keys: "d/4"})
+            .push({ keys: "r"})
+            .push({ keys: "e/4"})
+            .push({ keys: "f/4"})
+            .push({ keys: "f#/4"});
 
         new Vexflow()
             .set({ canvas: this.props.element })
