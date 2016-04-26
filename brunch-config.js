@@ -7,13 +7,21 @@ module.exports = {
             }
         },
         stylesheets: {
-            joinTo: "app.css"
+            joinTo: {
+                "style.css": /^app\/less/
+            },
+            order: {
+                before: [ "app/less/style.less" ]
+            }
         }
     },
     
     plugins: {
         babel: {
             presets: ["es2015"]
+        },
+        less: {
+            modules: false
         }
     }
 };

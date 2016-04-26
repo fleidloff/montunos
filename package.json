@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "git-digest-brunch": "^1.0.3",
+    "less-brunch": "^2.6.0",
     "vexflow": "^1.2.45"
   },
   "devDependencies": {

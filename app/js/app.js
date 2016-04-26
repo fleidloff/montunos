@@ -1,5 +1,5 @@
-import vexflow from "./vexflow";
+import Montuno from "./montuno/Montuno";
 
 document.addEventListener('DOMContentLoaded', () => {
-   vexflow(document.getElementById("canvas"));
+    new Montuno({ element: document.getElementById("canvas") }).render();
 });
