@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "brunch watch --server",
-    "prod": "brunch build --production"
+    "prod": "brunch build --production",
+    "gh-pages": "git checkout gh-pages; git reset --hard origin/master; npm run prod; cp -r public web; git add -A; git commit -m 'prod build'; git push -f; git checkout master"
   },
   "dependencies": {
     "git-digest-brunch": "^1.0.3",
