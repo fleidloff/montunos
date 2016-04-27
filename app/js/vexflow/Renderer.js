@@ -1,4 +1,5 @@
 /* global Vex*/
+import Beams from "./Beams";
 
 export default class Renderer {
     render({ canvas, width, notes, time, clef }) {
@@ -16,21 +17,20 @@ export default class Renderer {
 
         const voice = new Vex.Flow.Voice({
             num_beats: notes.ticks() / Vex.Flow.RESOLUTION * beatValue,
-            beat_value: 4,
+            beat_value: beatValue,
             resolution: Vex.Flow.RESOLUTION
         });
         voice.addTickables(notes.getWithBars(barEveryNTicks));
 
-        const formatter = new Vex.Flow.Formatter()
-            .joinVoices([voice])
-            .format([voice], width - 30);
+        const beams = new Beams(voice);
 
-        //Vex.Flow.Formatter.FormatAndDraw(ctx, stave, notes);
+        new Vex.Flow.Formatter()
+                    .joinVoices([voice])
+                    .format([voice], width - 30);
 
         voice.draw(ctx, stave);
 
-        //var beam = new Vex.Flow.Beam([notes.get()[1], notes.get()[2]]);
-        //beam.setContext(ctx).draw();
+        beams.draw(ctx);
 
         notes.getTies().forEach(tie => {
             new Vex.Flow.StaveTie({

@@ -10,18 +10,19 @@ export default class Montuno extends Props {
             .push({ keys: "d/4", duration: 8 })
             .push({ keys: "g/4" })
             .push({ keys: "f#/4" })
-            .push({ keys: "g/4" })
-                .push({ tie: 2 })
-                .push({ keys: "r"})
-                .push({ keys: "d/4"})
+                .push({ tie: 1 })
+                .push({ keys: "g/4" })
+            .push({ keys: "r"})
+            .push({ keys: "d/4"})
             .push({ keys: "r"})
             .push({ keys: "fn/4"})
             .push({ keys: "r"})
             .push({ keys: "d/4"})
             .push({ keys: "r"})
             .push({ keys: "e/4"})
-            .push({ keys: "f/4"})
-            .push({ keys: "f#/4"});
+                .push({ tie: 2 })
+                .push({ keys: "f/4"})
+                .push({ keys: "f#/4"});
 
 
         new Vexflow()
