@@ -22,6 +22,9 @@ module.exports = {
         },
         less: {
             modules: false
+        },
+        eslint: {
+            pattern: /^app\/js\/.*\.js?$/
         }
     }
 };

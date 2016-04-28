@@ -1,7 +1,7 @@
 export default class Note {
     constructor({ keys, duration }) {
-        let keysArr = typeof keys.push === "function" ? keys : [keys];
-        const note = new Vex.Flow.StaveNote({ keys: keysArr, duration: duration, "auto_stem": true });
+        const keysArr = typeof keys.push === "function" ? keys : [keys];
+        const note = new Vex.Flow.StaveNote({ keys: keysArr, duration, "auto_stem": true });
         keysArr.forEach((key, idx) => {
             if (duration.indexOf("d") > 0) {
                 note.addDotToAll();
