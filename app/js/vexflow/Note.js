@@ -1,5 +1,5 @@
 export default class Note {
-    constructor({ keys, duration }) {
+    constructor({ keys, duration, articulation }) {
         const keysArr = typeof keys.push === "function" ? keys : [keys];
         const note = new Vex.Flow.StaveNote({ keys: keysArr, duration, "auto_stem": true });
         keysArr.forEach((key, idx) => {
@@ -25,7 +25,17 @@ export default class Note {
                     break;
             }
         });
+
+        this.addArticulation({ articulation, note });
         this.note = note;
+    }
+
+    addArticulation({ articulation, note }) {
+        if (typeof articulation === "undefined") {
+            return;
+        }
+        const position = note.stem_direction === -1 ? Vex.Flow.Modifier.Position.ABOVE : Vex.Flow.Modifier.Position.BELOW;
+        note.addArticulation(0, new Vex.Flow.Articulation(`a${articulation}`).setPosition(position));
     }
 
     get() {

@@ -21,6 +21,9 @@ export default class Beams {
                     beamGroup = [];
                 } else {
                     if (t.intrinsicTicks <= 2096) {
+                        if (beamGroup.length > 0) {
+                            t.stem_direction = beamGroup[0].stem_direction;
+                        }
                         beamGroup.push(t);
                     }
                 }

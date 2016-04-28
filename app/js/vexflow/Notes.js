@@ -40,7 +40,7 @@ export default class Notes {
         return this.notes.map(note => note.get().intrinsicTicks).reduce((pv, cv) => pv + cv, 0);
     }
 
-    push({ keys, duration = this.lastDuration, tie, el }) {
+    push({ keys, duration = this.lastDuration, tie, articulation }) {
         if (typeof tie !== "undefined") {
             this.ties.push({ tieLength: tie, notesLength: this.notes.length });
             return this;
@@ -52,7 +52,7 @@ export default class Notes {
         if (keys === "r") {
             this.notes.push(new Rest({ duration }));
         } else {
-            this.notes.push(new Note({ keys, duration }));
+            this.notes.push(new Note({ keys, duration, articulation }));
         }
 
         return this;
