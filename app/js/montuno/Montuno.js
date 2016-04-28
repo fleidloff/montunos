@@ -1,7 +1,6 @@
 import Vexflow from "../vexflow/Vexflow";
 import Notes from "../vexflow/Notes";
 import Props from "../shared/Props";
-import Note from "../vexflow/Note";
 
 export default class Montuno extends Props {
     render() {
