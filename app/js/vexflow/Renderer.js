@@ -9,15 +9,18 @@ export default class Renderer {
         const renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
         const ctx = renderer.getContext();
-        const stave = new Vex.Flow.Stave(10, 20, width - 20);
+        const stave = new Vex.Flow.Stave(10, 20, width);
         stave
             .addClef("treble")
             .setEndBarType(Vex.Flow.Barline.type.END)
+            .setTimeSignature(time)
+            .setKeySignature(key)
             .setText(key || "", Vex.Flow.Modifier.Position.ABOVE, {
-                shift_x: 40,
+                shift_x: Math.floor(stave.getNoteStartX()),
                 shift_y: -10,
                 justification: Vex.Flow.TextNote.Justification.LEFT
             })
+            .setWidth(width - Math.floor(stave.getNoteStartX()))
             .setContext(ctx)
             .draw();
 
@@ -32,7 +35,7 @@ export default class Renderer {
 
         new Vex.Flow.Formatter()
                     .joinVoices([voice])
-                    .format([voice], width - 30);
+                    .format([voice], stave.getWidth() - Math.floor(stave.getNoteStartX()) + 10);
 
         voice.draw(ctx, stave);
 

@@ -26,7 +26,7 @@ export default class Montuno extends Props {
 
         new Vexflow()
             .set({ canvas: this.props.element })
-            .set({ key: "g-" })
+            .set({ key: "Gm" })
             .set({ notes })
             .render();
     }
