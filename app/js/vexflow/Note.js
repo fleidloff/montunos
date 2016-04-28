@@ -25,7 +25,7 @@ export default class Note {
                     break;
             }
         });
-
+        
         this.addArticulation({ articulation, note });
         this.note = note;
     }

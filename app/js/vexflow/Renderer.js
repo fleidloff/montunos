@@ -2,16 +2,22 @@
 import Beams from "./Beams";
 
 export default class Renderer {
-    render({ canvas, width, notes, time, clef }) {
+    render({ canvas, width, notes, time, clef, key }) {
         const beatValue = parseInt(time.split("/")[1], 10);
         const barEveryNTicks = Vex.Flow.RESOLUTION * parseInt(time.split("/")[0], 10) / beatValue;
 
         const renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
         const ctx = renderer.getContext();
-        const stave = new Vex.Flow.Stave(10, 0, width - 20);
+        const stave = new Vex.Flow.Stave(10, 20, width - 20);
         stave
             .addClef("treble")
+            .setEndBarType(Vex.Flow.Barline.type.END)
+            .setText(key || "", Vex.Flow.Modifier.Position.ABOVE, {
+                shift_x: 40,
+                shift_y: -10,
+                justification: Vex.Flow.TextNote.Justification.LEFT
+            })
             .setContext(ctx)
             .draw();
 
