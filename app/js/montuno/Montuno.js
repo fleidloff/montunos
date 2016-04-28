@@ -1,12 +1,16 @@
 import Vexflow from "../vexflow/Vexflow";
 import Notes from "../vexflow/Notes";
 import Props from "../shared/Props";
+import Scale from "../vexflow/Scale";
 
 export default class Montuno extends Props {
     render() {
+        const scale = new Scale({ key: "Gm" });
+        console.log(scale.get());
+
         const notes = new Notes()
             .push({ keys: "g/5", duration: 4, articulation: "^" })
-            .push({ keys: "d/4", duration: 8 })
+            .push({ keys: "e/4", duration: 8 })
                 .push({ tie: 1 })
             .push({ keys: "g/4" })
             .push({ keys: "f#/4" })
@@ -26,7 +30,7 @@ export default class Montuno extends Props {
 
         new Vexflow()
             .set({ canvas: this.props.element })
-            .set({ key: "Gm" })
+            .set({ key: scale.getKey() })
             .set({ notes })
             .render();
     }
