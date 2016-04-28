@@ -30,12 +30,28 @@ export default class Note {
         this.note = note;
     }
 
-    addArticulation({ articulation, note }) {
+    addArticulation({ articulation, position, note }) {
         if (typeof articulation === "undefined") {
             return;
         }
-        const position = note.stem_direction === -1 ? Vex.Flow.Modifier.Position.ABOVE : Vex.Flow.Modifier.Position.BELOW;
+
+        position = this.getPosition({ direction: articulation[1], note });
+
+        if (articulation.length === 2) {
+            articulation = articulation[0];
+        } 
         note.addArticulation(0, new Vex.Flow.Articulation(`a${articulation}`).setPosition(position));
+    }
+
+    getPosition({ direction, note }) {
+        switch(direction) {
+            case "^": 
+                return Vex.Flow.Modifier.Position.ABOVE;
+            case "_":
+                return Vex.Flow.Modifier.Position.BELOW;
+            default: 
+                return note.stem_direction === -1 ? Vex.Flow.Modifier.Position.ABOVE : Vex.Flow.Modifier.Position.BELOW;
+        }
     }
 
     get() {

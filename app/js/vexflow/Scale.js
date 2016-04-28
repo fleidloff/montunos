@@ -10,6 +10,10 @@ export default class Scale {
         return this.scale;
     }
 
+    note(input) {
+        return this.scale[parseInt(input.split("/")[0], 10) - 1] + "/" + input.split("/")[1];
+    }
+
     getKey() {
         return this.key;
     }
