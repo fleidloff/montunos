@@ -17,6 +17,15 @@ export default class Notes {
         return this.ties.get();
     }
 
+    drawTies({ ctx }) {
+        this.getTies().forEach(tie => {
+            new Vex.Flow.StaveTie({
+                first_note: this.get()[tie.first_note],
+                last_note: this.get()[tie.last_note]
+            }).setContext(ctx).draw();
+        });
+    }
+
     getWithBars(barEveryNTicks) {
         const result = [];
         let walkingTicks = 0;
