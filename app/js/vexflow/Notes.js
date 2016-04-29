@@ -50,18 +50,16 @@ export default class Notes {
     }
 
     push({ keys, duration = this.lastDuration, tie, articulation }) {
-        if (typeof tie !== "undefined") {
-            this.ties.push({ tieLength: tie, notesLength: this.notes.length });
-            return this;
-        }
-        duration = "" + duration;
-        duration = duration.replace(".", "d");
+        duration = ("" + duration).replace(".", "d");
         this.lastDuration = duration;
 
         if (keys === "r") {
             this.notes.push(new Rest({ duration }));
         } else {
             this.notes.push(new Note({ keys, duration, articulation }));
+        }
+        if (typeof tie !== "undefined") {
+            this.ties.push({ tieLength: tie, notesLength: this.notes.length });
         }
 
         return this;

@@ -10,12 +10,10 @@ export default class Montuno extends Props {
 
         const notes = new Notes()
             .push({ keys: "g/4", duration: 4, articulation: "^^" })
-            .push({ keys: "d/4", duration: 8 })
-                .push({ tie: 1 })
+            .push({ keys: "d/4", duration: 8, tie: 1 })
             .push({ keys: "g/4" })
-            .push({ keys: "f#/4" })
-                .push({ tie: 1 })
-                .push({ keys: "d/5", articulation: ">" })
+            .push({ keys: "f#/4", tie: 1 })
+            .push({ keys: "d/5", articulation: ">" })
             .push({ keys: "r"})
             .push({ keys: "d/4"})
             .push({ keys: "r"})
@@ -24,8 +22,8 @@ export default class Montuno extends Props {
             .push({ keys: "d/4"})
             .push({ keys: "r"})
             .push({ keys: "e/4", articulation: "." })
-                .push({ keys: "f/4", articulation: "."})
-                .push({ keys: "f#/4.", articulation: "."});
+            .push({ keys: "f/4", articulation: "."})
+            .push({ keys: "f#/4.", articulation: "."});
 
 
         new Vexflow()
