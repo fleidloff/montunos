@@ -1,11 +1,11 @@
 {
-  "name": "your-app",
-  "description": "Description",
-  "author": "Your Name",
+  "name": "montunos",
+  "description": "montunos",
+  "author": "Frederik Leidloff (kontakt@frederik-leidloff.de)",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/fleidloff/montunos"
   },
   "scripts": {
     "start": "brunch watch --server",
