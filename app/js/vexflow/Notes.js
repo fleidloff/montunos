@@ -48,7 +48,12 @@ export default class Notes {
     ticks() {
         return this.notes.map(note => note.get().intrinsicTicks).reduce((pv, cv) => pv + cv, 0);
     }
-
+    
+    pushAll(...notes) {
+        notes.forEach(note => this.push(note));
+        return this;
+    }
+    
     push({ keys, duration = this.lastDuration, tie, articulation }) {
         duration = ("" + duration).replace(".", "d");
         this.lastDuration = duration;
