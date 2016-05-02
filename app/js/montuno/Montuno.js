@@ -14,16 +14,16 @@ export default class Montuno extends Props {
             { keys: "g/4" },
             { keys: "f#/4", tie: 1 },
             { keys: "d/5", articulation: ">" },
-            { keys: "r"},
-            { keys: "d/4"},
-            { keys: "r"},
-            { keys: "fn/4"},
-            { keys: "r"},
-            { keys: "d/4"},
-            { keys: "r"},
+            { keys: "r" },
+            { keys: "d/4" },
+            { keys: "r" },
+            { keys: "fn/4" },
+            { keys: "r" },
+            { keys: "d/4" },
+            { keys: "r" },
             { keys: "e/4", articulation: "." },
-            { keys: "f/4", articulation: "."},
-            { keys: "f#/4.", articulation: "."}
+            { keys: "f/4", articulation: "." },
+            { keys: "f#/4.", articulation: "." }
         );
 
 
