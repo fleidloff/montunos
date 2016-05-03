@@ -19,9 +19,8 @@ export default class Renderer {
                 shift_x: Math.floor(stave.getNoteStartX()),
                 shift_y: -10,
                 justification: Vex.Flow.TextNote.Justification.LEFT
-            });
-        console.log(Math.floor(stave.getNoteStartX()))
-        stave.setWidth(width - 20)
+            })
+            .setWidth(width - 20)
             .setContext(ctx)
             .draw();
 
