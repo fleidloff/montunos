@@ -11,7 +11,7 @@ export default class Renderer {
         const ctx = renderer.getContext();
         const stave = new Vex.Flow.Stave(10, 20, width);
         stave
-            .addClef("treble")
+            .addClef(clef)
             .setEndBarType(Vex.Flow.Barline.type.END)
             .setTimeSignature(time)
             .setKeySignature(key)
@@ -19,8 +19,9 @@ export default class Renderer {
                 shift_x: Math.floor(stave.getNoteStartX()),
                 shift_y: -10,
                 justification: Vex.Flow.TextNote.Justification.LEFT
-            })
-            .setWidth(width - Math.floor(stave.getNoteStartX()))
+            });
+        console.log(Math.floor(stave.getNoteStartX()))
+        stave.setWidth(width - 20)
             .setContext(ctx)
             .draw();
 
