@@ -1,6 +1,4 @@
-// run with node app/js/vexflow/Scale2.js
-
-class Scale {
+export default class Scale {
     constructor({ root="c", scale="major" }) {
         this.scale = Scale.scales[scale];
         this.root = root;
@@ -13,12 +11,9 @@ class Scale {
 
 Scale.scales = {};
 Scale.music = Music(); //new Vex.Flow.Music();
-Scale.registerScale({ name: "blues", notes: ["1", "b3", "4", "b5", "5", "b7"] });
-
-console.log(new Scale({ scale: "blues", root: "g" }));
 
 function Music() {
-    var Music = {};
+    const Music = {};
 
     Music.intervals = {
         "u":  0, "unison": 0,
@@ -37,48 +32,48 @@ function Music() {
     };
 
     Music.noteValues = {
-        'c':   { root_index: 0, int_val: 0 },
-        'cn':  { root_index: 0, int_val: 0 },
-        'c#':  { root_index: 0, int_val: 1 },
-        'c##': { root_index: 0, int_val: 2 },
-        'cb':  { root_index: 0, int_val: 11 },
-        'cbb': { root_index: 0, int_val: 10 },
-        'd':   { root_index: 1, int_val: 2 },
-        'dn':  { root_index: 1, int_val: 2 },
-        'd#':  { root_index: 1, int_val: 3 },
-        'd##': { root_index: 1, int_val: 4 },
-        'db':  { root_index: 1, int_val: 1 },
-        'dbb': { root_index: 1, int_val: 0 },
-        'e':   { root_index: 2, int_val: 4 },
-        'en':  { root_index: 2, int_val: 4 },
-        'e#':  { root_index: 2, int_val: 5 },
-        'e##': { root_index: 2, int_val: 6 },
-        'eb':  { root_index: 2, int_val: 3 },
-        'ebb': { root_index: 2, int_val: 2 },
-        'f':   { root_index: 3, int_val: 5 },
-        'fn':  { root_index: 3, int_val: 5 },
-        'f#':  { root_index: 3, int_val: 6 },
-        'f##': { root_index: 3, int_val: 7 },
-        'fb':  { root_index: 3, int_val: 4 },
-        'fbb': { root_index: 3, int_val: 3 },
-        'g':   { root_index: 4, int_val: 7 },
-        'gn':  { root_index: 4, int_val: 7 },
-        'g#':  { root_index: 4, int_val: 8 },
-        'g##': { root_index: 4, int_val: 9 },
-        'gb':  { root_index: 4, int_val: 6 },
-        'gbb': { root_index: 4, int_val: 5 },
-        'a':   { root_index: 5, int_val: 9 },
-        'an':  { root_index: 5, int_val: 9 },
-        'a#':  { root_index: 5, int_val: 10 },
-        'a##': { root_index: 5, int_val: 11 },
-        'ab':  { root_index: 5, int_val: 8 },
-        'abb': { root_index: 5, int_val: 7 },
-        'b':   { root_index: 6, int_val: 11 },
-        'bn':  { root_index: 6, int_val: 11 },
-        'b#':  { root_index: 6, int_val: 0 },
-        'b##': { root_index: 6, int_val: 1 },
-        'bb':  { root_index: 6, int_val: 10 },
-        'bbb': { root_index: 6, int_val: 9 }
+        "c":   { root_index: 0, int_val: 0 },
+        "cn":  { root_index: 0, int_val: 0 },
+        "c#":  { root_index: 0, int_val: 1 },
+        "c##": { root_index: 0, int_val: 2 },
+        "cb":  { root_index: 0, int_val: 11 },
+        "cbb": { root_index: 0, int_val: 10 },
+        "d":   { root_index: 1, int_val: 2 },
+        "dn":  { root_index: 1, int_val: 2 },
+        "d#":  { root_index: 1, int_val: 3 },
+        "d##": { root_index: 1, int_val: 4 },
+        "db":  { root_index: 1, int_val: 1 },
+        "dbb": { root_index: 1, int_val: 0 },
+        "e":   { root_index: 2, int_val: 4 },
+        "en":  { root_index: 2, int_val: 4 },
+        "e#":  { root_index: 2, int_val: 5 },
+        "e##": { root_index: 2, int_val: 6 },
+        "eb":  { root_index: 2, int_val: 3 },
+        "ebb": { root_index: 2, int_val: 2 },
+        "f":   { root_index: 3, int_val: 5 },
+        "fn":  { root_index: 3, int_val: 5 },
+        "f#":  { root_index: 3, int_val: 6 },
+        "f##": { root_index: 3, int_val: 7 },
+        "fb":  { root_index: 3, int_val: 4 },
+        "fbb": { root_index: 3, int_val: 3 },
+        "g":   { root_index: 4, int_val: 7 },
+        "gn":  { root_index: 4, int_val: 7 },
+        "g#":  { root_index: 4, int_val: 8 },
+        "g##": { root_index: 4, int_val: 9 },
+        "gb":  { root_index: 4, int_val: 6 },
+        "gbb": { root_index: 4, int_val: 5 },
+        "a":   { root_index: 5, int_val: 9 },
+        "an":  { root_index: 5, int_val: 9 },
+        "a#":  { root_index: 5, int_val: 10 },
+        "a##": { root_index: 5, int_val: 11 },
+        "ab":  { root_index: 5, int_val: 8 },
+        "abb": { root_index: 5, int_val: 7 },
+        "b":   { root_index: 6, int_val: 11 },
+        "bn":  { root_index: 6, int_val: 11 },
+        "b#":  { root_index: 6, int_val: 0 },
+        "b##": { root_index: 6, int_val: 1 },
+        "bb":  { root_index: 6, int_val: 10 },
+        "bbb": { root_index: 6, int_val: 9 }
     };
     
     return Music;

@@ -10,7 +10,8 @@
   "scripts": {
     "start": "brunch watch --server",
     "prod": "brunch build --production",
-    "gh-pages": "git checkout gh-pages; git reset --hard origin/master; rm -r public; npm run prod; cp -r public web; git add -A; git commit -m 'prod build'; git push -f; git checkout master"
+    "gh-pages": "git checkout gh-pages; git reset --hard origin/master; rm -r public; npm run prod; cp -r public web; git add -A; git commit -m 'prod build'; git push -f; git checkout master",
+    "test": "brunch watch --server && xdg-open localhost:3333/test"
   },
   "dependencies": {
     "vexflow": "^1.2.45"
