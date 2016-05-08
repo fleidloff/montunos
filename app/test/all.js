@@ -2,6 +2,7 @@ window.__dirname = window.__dirname || "";
 // https://github.com/substack/tape
 import test from "tape";
 import path from "path"
+import render from "./render.js";
 
 const results = {
     fail: 0,
@@ -9,7 +10,7 @@ const results = {
 };
 
 let current;
-test.createStream({ objectMode: true }).on('data', function (row) {
+test.createStream({ objectMode: true }).on("data", function (row) {
     if (row.type === "end" || row.type === "test") {
         current = row;
         return;
@@ -22,7 +23,12 @@ test.createStream({ objectMode: true }).on('data', function (row) {
     }
 });
 
-test.onFinish((res) => console.log("all tests finished", results));
+test.onFinish((res) => {
+    render(results);
+    console.log("all tests finished", results)
+});
 
 import run from "./scale.js";
 run(test);
+
+

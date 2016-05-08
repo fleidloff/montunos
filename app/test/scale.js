@@ -6,7 +6,7 @@ export default function(test) {
     test("simple example test", (assert) => {
         const s = new Scale({ scale: "blues", root: "g" })
         
-        assert.equal(s.root, "q");
+        assert.equal(s.root, "g");
         assert.equal(typeof s.scale, "object");
         assert.end();
     });   
