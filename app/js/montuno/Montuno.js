@@ -5,8 +5,7 @@ import Scale from "../vexflow/Scale";
 
 export default class Montuno extends Props {
     render() {
-        const scale = new Scale({ key: "Gm" });
-        console.log(scale.get(), scale.note("1/4"), scale.note("5/4"));
+        const scale = new Scale({ root: "g", scale: "m" });
 
         const notes = new Notes().pushAll(
             { keys: "g/4", duration: 4, articulation: "^^" },

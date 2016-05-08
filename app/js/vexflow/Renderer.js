@@ -1,4 +1,4 @@
-/* global Vex*/
+import Vex from "vexflow";
 import Voice from "./Voice";
 
 export default class Renderer {

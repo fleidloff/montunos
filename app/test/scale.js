@@ -1,23 +1,25 @@
-import Scale from "../js/vexflow/Scale2.js";
-
-Scale.registerScale({ name: "blues", notes: ["1", "b3", "4", "b5", "5", "b7"], accidentals: "{root}m" });
+import Scale from "../js/vexflow/Scale.js";
 
 export default function(test) {
-    test("root, scale and accidentals should be correct", (assert) => {
-        const s = new Scale({ scale: "blues", root: "g" })
+    test("rootand key should be correct", (assert) => {
+        const s = new Scale({ root: "g", scale: "M" })
         
         assert.equal(s.root, "g");
-        assert.equal(s.scale, "blues");
-        assert.equal(s.accidentals, "Gm");
-        assert.same(s.rootValue, { root_index: 4, int_val: 7 });
+        assert.equal(s.getKey(), "G");
         assert.end();
     });
 
-    test("notes of blues scale must be correct", (assert) => {
-        const s = new Scale({ scale: "blues", root: "g" })
+    test("notes must be correct for flat keys (b accidentals)", (assert) => {
+        const s = new Scale({ root: "g", scale: "m" })
         
-        assert.equal(s.root, "g");
-        assert.deepEqual(s.notes, ["1", "b3", "4", "b5", "5", "b7"]);
+        assert.equal(s.note("b3"), "bb");
         assert.end();
-    });      
+    });    
+
+    test("notes must be correct for sharp keys (# accidentals)", (assert) => {
+        const s = new Scale({ root: "g", scale: "M" })
+        
+        assert.equal(s.note("b5"), "c#");
+        assert.end();
+    });    
 }
