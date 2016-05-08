@@ -1,16 +1,19 @@
 export default class Scale {
     constructor({ root="c", scale="major" }) {
-        this.scale = Scale.scales[scale];
+        this.scale = scale;
+        this.notes = Scale.scales[scale].notes;
         this.root = root;
+        this.rootValue = Scale.music.noteValues[root];
+        this.accidentals = Scale.scales[scale].accidentals.replace("{root}", root.toUpperCase());
     }
     
-    static registerScale({ name, notes }) {
-        this.scales[name] = { notes };
+    static registerScale({ name, notes, accidentals="C" }) {
+        this.scales[name] = { notes, accidentals };
     }
 }
 
 Scale.scales = {};
-Scale.music = Music(); //new Vex.Flow.Music();
+Scale.music = new Music();
 
 function Music() {
     const Music = {};
