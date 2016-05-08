@@ -2,9 +2,9 @@ module.exports = {
     files: {
         javascripts: {
             joinTo: {
-                "vendor.js": /^app\/vendor/,
-                "app.js": /^app\/js/,
-                "test.js": /^app\/test/
+                "vendor.js": /^app\/vendor|^node_modules\//,
+                "app.js": /^app\/js|^node_modules\//,
+                "test.js": /^app\/test|^node_modules\//
             }
         },
         stylesheets: {
@@ -16,7 +16,7 @@ module.exports = {
             }
         }
     },
-    
+
     plugins: {
         babel: {
             presets: ["es2015"]
