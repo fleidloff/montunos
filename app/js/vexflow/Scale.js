@@ -1,5 +1,12 @@
 import Vex from "vexflow";
 
+// todo: put this to constructor based on m.createScaleMap() accidentals
+// also: reset afterwards to keep Vex.Flow clean
+Vex.Flow.Music.canonical_notes = [
+    "c", "db", "d", "d#",
+    "e", "f", "f#", "g",
+    "g#", "a", "bb", "b"
+];
 const m = new Vex.Flow.Music();
 
 export default class Scale {
