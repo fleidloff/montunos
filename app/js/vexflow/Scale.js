@@ -1,18 +1,32 @@
 import Vex from "vexflow";
 
-// todo: put this to constructor based on m.createScaleMap() accidentals
-// also: reset afterwards to keep Vex.Flow clean
-Vex.Flow.Music.canonical_notes = [
-    "c", "db", "d", "d#",
+const canonical_notes = [
+    "c", "c#", "d", "d#",
     "e", "f", "f#", "g",
-    "g#", "a", "bb", "b"
+    "g#", "a", "a#", "b"
 ];
-const m = new Vex.Flow.Music();
+
+const b_canonical_notes = [
+    "c", "db", "d", "eb",
+    "e", "f", "gb", "g",
+    "ab", "a", "bb", "b"
+];
+
+const Music = new Vex.Flow.Music();
+
+function bAccidentals(key) {
+    const scaleMap = Music.createScaleMap(key);
+    return Object.keys(scaleMap)
+        .map(key => scaleMap[key][1])
+        .filter(accidental => accidental === "b")
+        .length > 0;
+}
 
 export default class Scale {
     constructor({ root="c", scale="M" }) {
         this.root = root;
         this.key = root.toUpperCase() + scale.replace("M", "");
+        this.bAccidentals = bAccidentals(this.key);
     }
 
     getKey() {
@@ -20,12 +34,11 @@ export default class Scale {
     }
 
     note(interval="unison") {
-        const intervalValue = m.getIntervalValue(interval);
-        const rootValue = m.getNoteValue(this.root);
+        const intervalValue = Music.getIntervalValue(interval);
+        const rootValue = Music.getNoteValue(this.root);
         const value = (rootValue + intervalValue) % Vex.Flow.Music.NUM_TONES;
-        const canonicalNoteName = m.getCanonicalNoteName(value);
-        const noteName = m.getRelativeNoteName(canonicalNoteName, value);
+        const canonicalNoteName = this.bAccidentals ? b_canonical_notes[value] : canonical_notes[value];
 
-        return noteName; 
+        return canonicalNoteName; 
     }
 }

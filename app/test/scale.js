@@ -21,5 +21,14 @@ export default function(test) {
         
         assert.equal(s.note("b5"), "c#");
         assert.end();
-    });    
+    }); 
+
+    test("notes must be correct for 2 scales at the same time", (assert) => {
+        const gm = new Scale({ root: "g", scale: "m" })
+        const g = new Scale({ root: "g", scale: "M" })
+        
+        assert.equal(g.note("b5"), "c#");
+        assert.equal(gm.note("b3"), "bb");
+        assert.end();
+    });      
 }
