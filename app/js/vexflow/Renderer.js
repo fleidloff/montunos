@@ -15,11 +15,11 @@ export default class Renderer {
             .setEndBarType(Vex.Flow.Barline.type.END)
             .setTimeSignature(time)
             .setKeySignature(key)
-            .setText(key || "", Vex.Flow.Modifier.Position.ABOVE, {
+            /*.setText(key || "", Vex.Flow.Modifier.Position.ABOVE, {
                 shift_x: Math.floor(stave.getNoteStartX()),
                 shift_y: -10,
                 justification: Vex.Flow.TextNote.Justification.LEFT
-            })
+            })*/
             .setWidth(width - 20)
             .setContext(ctx)
             .draw();
