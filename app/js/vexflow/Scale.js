@@ -21,12 +21,14 @@ function bAccidentals({ key, scaleMap }) {
         .length > 0;
 }
 
+// todo: extend Props
 export default class Scale {
-    constructor({ root="c", scale="M" }) {
+    constructor({ root="c", scale="M", octave=4 }) {
         this.root = root;
         this.key = root.toUpperCase() + scale.replace("M", "");
         this.scaleMap = Music.createScaleMap(this.key);
         this.bAccidentals = bAccidentals(this);
+        this.octave = octave;
     }
 
     getKey() {
@@ -53,5 +55,13 @@ export default class Scale {
             this.scaleMap[canonicalNote[0]] = canonicalNote;
             return canonicalNote;
         }
+    }
+
+    // todo: octaveAndNote function and add tests
+    getOctave(interval="unison", octaveModifier=0) {
+        const intervalValue = Music.getIntervalValue(interval);
+        const rootValue = Music.getNoteValue(this.root);
+        
+        return "/" + (this.octave + Math.floor((rootValue + intervalValue) / Vex.Flow.Music.NUM_TONES) + octaveModifier);    
     }
 }
