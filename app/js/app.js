@@ -1,7 +1,5 @@
-import Montuno from "./montuno/Montuno";
-import Montuno2 from "./montuno/Montuno2";
+import Montuno from "./montuno/patterns/1_montuno";
 
 document.addEventListener("DOMContentLoaded", () => {
     new Montuno({ element: document.getElementById("canvas") }).render();
-    new Montuno2({ element: document.getElementById("canvas2") }).render();
 });
