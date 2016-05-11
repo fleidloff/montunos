@@ -1,11 +1,11 @@
 import Scale from "../js/vexflow/Scale.js";
 
 export default function(test) {
-    test("rootand key should be correct", (assert) => {
+    test("root and key should be correct", (assert) => {
         const s = new Scale({ root: "g", scale: "M" });
         
-        assert.equal(s.root, "g");
-        assert.equal(s.getKey(), "G");
+        assert.equal(s.get("root"), "g");
+        assert.equal(s.get("key"), "G");
         assert.end();
     });
 

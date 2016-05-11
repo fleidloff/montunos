@@ -1,4 +1,5 @@
 import Vex from "vexflow";
+import GetterAndSetter from "../shared/GetterAndSetter";
 
 const canonical_notes = [
     "c", "c#", "d", "d#",
@@ -21,26 +22,26 @@ function bAccidentals({ key, scaleMap }) {
         .length > 0;
 }
 
-// todo: extend Props
-export default class Scale {
-    constructor({ root="c", scale="M", octave=4 }) {
-        this.root = root;
-        this.key = root.toUpperCase() + scale.replace("M", "");
-        this.scaleMap = Music.createScaleMap(this.key);
-        this.bAccidentals = bAccidentals(this);
-        this.octave = octave;
-    }
+const defaultProps = { 
+    root: "c", 
+    scale: "M", 
+    octave: 4 
+};
 
-    getKey() {
-        return this.key;
+export default class Scale extends GetterAndSetter {
+    constructor(props) {
+        super();
+        this.set(Object.assign({}, defaultProps, props));
+        this.set({ key: this.props.root.toUpperCase() + this.props.scale.replace("M", "")});
+        this.set({ scaleMap: Music.createScaleMap(this.props.key)});
+        this.set({ bAccidentals: bAccidentals(this.props)});
     }
 
     canonicalNote(interval="unison") {
         const intervalValue = Music.getIntervalValue(interval);
-        const rootValue = Music.getNoteValue(this.root);
+        const rootValue = Music.getNoteValue(this.props.root);
         const value = (rootValue + intervalValue) % Vex.Flow.Music.NUM_TONES;
-        const canonicalNoteName = this.bAccidentals ? b_canonical_notes[value] : canonical_notes[value];
-
+        const canonicalNoteName = this.props.bAccidentals ? b_canonical_notes[value] : canonical_notes[value];
         return canonicalNoteName; 
     }
 
@@ -49,19 +50,18 @@ export default class Scale {
         if (canonicalNote.length === 1) {
             canonicalNote += "n";
         }
-        if (this.scaleMap[canonicalNote[0]] === canonicalNote) {
+        if (this.props.scaleMap[canonicalNote[0]] === canonicalNote) {
             return canonicalNote[0];
         } else {
-            this.scaleMap[canonicalNote[0]] = canonicalNote;
+            this.props.scaleMap[canonicalNote[0]] = canonicalNote;
             return canonicalNote;
         }
     }
 
-    // todo: octaveAndNote function and add tests
-    getOctave(interval="unison", octaveModifier=0) {
+    octave(interval="unison", octaveModifier=0) {
         const intervalValue = Music.getIntervalValue(interval);
-        const rootValue = Music.getNoteValue(this.root);
+        const rootValue = Music.getNoteValue(this.props.root);
         
-        return "/" + (this.octave + Math.floor((rootValue + intervalValue) / Vex.Flow.Music.NUM_TONES) + octaveModifier);    
+        return "/" + (this.props.octave + Math.floor((rootValue + intervalValue) / Vex.Flow.Music.NUM_TONES) + octaveModifier);    
     }
 }
