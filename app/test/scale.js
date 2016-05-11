@@ -48,5 +48,27 @@ export default function(test) {
         assert.equal(s.note("M3"), "bn");
         assert.equal(s.note("b3"), "bb");
         assert.end();
-    });     
+    });   
+
+    test("scale.from must return correct note", assert => {
+        const s = new Scale({ root: "g", scale: "m" });
+
+        assert.equal(s.from({ steps: "b3" })[0], "b/4");
+        assert.same(s.from({ steps: "b3" }), ["b/4"]);
+        assert.end();
+    });
+
+    test("scale.from must be correct for multiple notes", assert => {
+        const s = new Scale({ root: "g", scale: "m" });
+
+        assert.same(s.from({ steps: ["b3", "5"] }), ["b/4", "d/5"]);
+        assert.end();   
+    });
+
+    test("scale.from must be correct for multiple notes that needs to be sorted", assert => {
+        const s = new Scale({ root: "g", scale: "m" });
+
+        assert.same(s.from({ steps: ["5", "b3", "m7"], octave: [0, 0, -1] }), ["f/4", "b/4", "d/5"]);
+        assert.end();   
+    });
 }

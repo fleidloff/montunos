@@ -1,12 +1,14 @@
 import Note from "./Note";
 import Rest from "./Rest";
 import Ties from "./Ties";
+import Scale from "./Scale";
 
 export default class Notes {
-    constructor() {
+    constructor({ scale } = {}) {
         this.notes = [];
         this.ties = new Ties();
         this.lastDuration = "4";
+        this.scale = scale || new Scale();
     }
 
     get() {
@@ -54,9 +56,13 @@ export default class Notes {
         return this;
     }
     
-    push({ keys, duration = this.lastDuration, tie, articulation }) {
+    push({ steps, octave=0, keys, duration = this.lastDuration, tie, articulation }) {
         duration = ("" + duration).replace(".", "d");
         this.lastDuration = duration;
+
+        if (typeof steps !== "undefined") {
+            keys = this.scale.from({ steps, octave });
+        }
 
         if (keys === "r") {
             this.notes.push(new Rest({ duration }));

@@ -7,21 +7,21 @@ export default class Montuno extends Props {
     render() {
         const scale = new Scale({ root: "g", scale: "m", octave: 4 });
 
-        const notes = new Notes().pushAll(
-            { keys: scale.note("u") + scale.octave("u"), duration: 8 },
-            { keys: scale.note("b2") + scale.octave("b2") },
-            { keys: scale.note("2") + scale.octave("2") },
-            { keys: scale.note("b3") + scale.octave("b3") },
-            { keys: scale.note("3") + scale.octave("3") },
-            { keys: scale.note("4") + scale.octave("4") },
-            { keys: scale.note("b5") + scale.octave("b5") },
-            { keys: scale.note("5") + scale.octave("5") },
-            { keys: scale.note("#5") + scale.octave("#5") },
-            { keys: scale.note("6") + scale.octave("6") },
-            { keys: scale.note("b7") + scale.octave("b7") },
-            { keys: scale.note("M7") + scale.octave("M7") },
-            { keys: scale.note("8") + scale.octave("8") },
-            { keys: scale.note("u") + scale.octave("u", 1), duration: "4." }
+        const notes = new Notes({ scale }).pushAll(
+            { steps: "u", duration: 8 },
+            { steps: "b2" },
+            { steps: ["2", "4", "b7"], octave: [0, 0, -1] },
+            { steps: "b3" },
+            { steps: "3" },
+            { steps: "4" },
+            { steps: "b5" },
+            { steps: "5" },
+            { steps: "5" },
+            { steps: "6" },
+            { steps: "b7" },
+            { steps: "M7" },
+            { steps: "8" },
+            { steps: "u", octave: +1, duration: "4." }
         );
 
 

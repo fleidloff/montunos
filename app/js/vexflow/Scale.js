@@ -64,4 +64,37 @@ export default class Scale extends GetterAndSetter {
         
         return "/" + (this.props.octave + Math.floor((rootValue + intervalValue) / Vex.Flow.Music.NUM_TONES) + octaveModifier);    
     }
+
+    from({ steps, octave=0 }) {
+        if (typeof steps.push !== "function") {
+            steps = [steps];
+        }
+        if (typeof octave.push !== "function") {
+            octave = [octave];
+        }
+
+        const result = steps.map((step, idx) => { 
+            const octaveStep = typeof octave[idx] === "undefined" ? octave[0] : octave[idx];
+            return {
+                note: this.note(step) + this.octave(step, octaveStep),
+                interval: Music.getIntervalValue(step),
+                octave: octaveStep
+            };
+        });
+        // sort because https://github.com/0xfe/vexflow/issues/104
+        result.sort((a, b) => {
+            if (a.octave < b.octave) {
+                return -1;
+            } else if (a.octave > b.octave) {
+                return 1;
+            } 
+
+            if (a.interval < b.interval) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+        return result.map(it => it.note);
+    }
 }
