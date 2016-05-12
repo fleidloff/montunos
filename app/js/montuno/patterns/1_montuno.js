@@ -1,10 +1,13 @@
-import Vexflow from "../../vexflow/Vexflow";
-import Notes from "../../vexflow/Notes";
-import Props from "../../shared/Props";
-import Scale from "../../vexflow/Scale";
 import Montuno from "../Montuno";
 
 export default class extends Montuno {
+    scale() {
+        return {
+            scale: "M",
+            root: "e"
+        }    
+    }
+    
     notes() {
         return [
             { s: "5", d: 4 },
