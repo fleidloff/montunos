@@ -56,6 +56,7 @@ export default class Notes {
         return this;
     }
     
+    // todo: simplify; eslint says it's too complex
     push({ s, steps = steps||s, o, octave=octave||o||0, k, keys=keys||k, d, duration=duration||d||this.lastDuration, t, tie=tie||t, a, articulation=articulation||a }) {
         duration = ("" + duration).replace(".", "d");
         this.lastDuration = duration;

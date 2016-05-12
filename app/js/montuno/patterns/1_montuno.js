@@ -7,7 +7,7 @@ export default class extends Montuno {
             root: "e"
         }    
     }
-    
+    // todo: allow to use "1" instead of "u" and so on...
     notes() {
         return [
             { s: "5", d: 4 },
