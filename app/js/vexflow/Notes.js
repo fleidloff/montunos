@@ -56,8 +56,24 @@ export default class Notes {
         return this;
     }
     
-    // todo: simplify; eslint says it's too complex
-    push({ s, steps = steps||s, o, octave=octave||o||0, k, keys=keys||k, d, duration=duration||d||this.lastDuration, t, tie=tie||t, a, articulation=articulation||a }) {
+    pushTie(tie) {
+        if (typeof tie !== "undefined") {
+            this.ties.push({ tieLength: tie, notesLength: this.notes.length });
+        }   
+    }
+
+    withAliases({ s, steps, o, octave, k, keys, d, duration, t, tie, a, articulation }) {
+        return {
+            steps: steps || s,
+            octave: octave || o,
+            keys: keys || k,
+            duration: duration || d,
+            tie: tie || t,
+            articulation: articulation || a 
+        };
+    }
+
+    push(_, { steps, octave=0, keys, duration=this.lastDuration, tie, articulation } = this.withAliases(_)) {
         duration = ("" + duration).replace(".", "d");
         this.lastDuration = duration;
 
@@ -70,9 +86,8 @@ export default class Notes {
         } else {
             this.notes.push(new Note({ keys, duration, articulation }));
         }
-        if (typeof tie !== "undefined") {
-            this.ties.push({ tieLength: tie, notesLength: this.notes.length });
-        }
+
+        this.pushTie(tie);
 
         return this;
     }
