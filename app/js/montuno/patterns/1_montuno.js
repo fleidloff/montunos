@@ -30,7 +30,7 @@ export default class extends Montuno {
             { s: "3" },
             { s: "5" },
             { s: "u" },
-            { s: "2", d: 4 },
+            { s: "2", d: 4, a: "-" },
             { s: ["4", "6"], d: 8 },
             { s: ["2"] }
         ];
