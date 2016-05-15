@@ -32,9 +32,14 @@ export default class Scale extends GetterAndSetter {
     constructor(props) {
         super();
         this.set(Object.assign({}, defaultProps, props));
-        this.set({ key: this.props.root.toUpperCase() + this.props.scale.replace("M", "")});
+        this.set({ key: this.toKey() });
         this.set({ scaleMap: Music.createScaleMap(this.props.key)});
         this.set({ bAccidentals: bAccidentals(this.props)});
+    }
+
+    toKey() {
+        const root = this.props.root.charAt(0).toUpperCase() + this.props.root.slice(1);
+        return root + this.props.scale.replace("M", "");   
     }
 
     canonicalNote(interval="unison") {

@@ -6,7 +6,7 @@ import Scale from "../vexflow/Scale";
 export default class Montuno extends Props {
     constructor(props) {
         super(props);
-        this.props.scale = new Scale(Object.assign({}, this.scale(), props));
+        this.props.scale = new Scale(Object.assign({}, this.scale(), this.props));
     }
 
     notes() { return []; }

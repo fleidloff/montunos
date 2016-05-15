@@ -1,5 +1,6 @@
 import Montuno from "../Montuno";
 
+
 export default class extends Montuno {
     scale() {
         return {
