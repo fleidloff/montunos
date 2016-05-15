@@ -2,6 +2,14 @@ import Montuno from "../Montuno";
 
 
 export default class extends Montuno {
+    description() {
+        return `
+            ## rendered with Montunos.de
+            V - IV - I - IV  
+            in major.
+        `;
+    }
+
     scale() {
         return {
             scale: "M",

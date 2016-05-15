@@ -2,6 +2,9 @@ import Vexflow from "../vexflow/Vexflow";
 import Notes from "../vexflow/Notes";
 import Props from "../shared/Props";
 import Scale from "../vexflow/Scale";
+import { markdown } from "markdown";
+import noLeadingSpaces from "../shared/noLeadingSpaces";
+
 
 export default class Montuno extends Props {
     constructor(props) {
@@ -11,8 +14,13 @@ export default class Montuno extends Props {
 
     notes() { return []; }
     scale() { return {}; }
+    description() { return ""; }
 
-    render() {
+    renderDescription() {
+        this.props.element.previousSibling.innerHTML = markdown.toHTML(noLeadingSpaces`${this.description()}`);
+    }
+
+    renderMontuno() {
         const notes = new Notes({ scale: this.props.scale });
         notes.pushAll(...this.notes());
 
@@ -20,6 +28,11 @@ export default class Montuno extends Props {
             .set({ canvas: this.props.element })
             .set({ key: this.props.scale.get("key") })
             .set({ notes })
-            .render();
+            .render();   
+    }
+
+    render() {
+        this.renderDescription();
+        this.renderMontuno();
     }
 }
