@@ -5,26 +5,16 @@ import Scale from "../vexflow/Scale";
 import { markdown } from "markdown";
 import noLeadingSpaces from "../shared/noLeadingSpaces";
 
-const defaults = {
-    notes: [],
-    scale: {},
-    description: ""
-};
 
 export default class Montuno extends Props {
     constructor(props) {
-        super(Object.assign({}, props, defaults));
+        super(props);
         this.props.scale = new Scale(Object.assign({}, this.scale(), this.props));
     }
-    
-    // todo: implement from method that return new Montuno from a regular object
-    from(obj) {
-        
-    }
 
-    notes() { return this.props.notes; }
-    scale() { return this.props.scale; }
-    description() { return this.props.description; }
+    notes() { return []; }
+    scale() { return {}; }
+    description() { return ""; }
 
     renderDescription() {
         this.props.element.previousSibling.innerHTML = markdown.toHTML(noLeadingSpaces`${this.description()}`);
