@@ -24,7 +24,7 @@ function bAccidentals({ key, scaleMap }) {
 
 const defaultProps = { 
     root: "c", 
-    scale: "M", 
+    mode: "M", 
     octave: 4 
 };
 
@@ -39,7 +39,7 @@ export default class Scale extends GetterAndSetter {
 
     toKey() {
         const root = this.props.root.charAt(0).toUpperCase() + this.props.root.slice(1);
-        return root + this.props.scale.replace("M", "");   
+        return root + this.props.mode.replace("M", "");   
     }
 
     canonicalNote(interval="unison") {

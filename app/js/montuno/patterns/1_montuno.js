@@ -12,7 +12,7 @@ export default class extends Montuno {
 
     scale() {
         return {
-            scale: "M",
+            mode: "M",
             root: "e"
         }    
     }
