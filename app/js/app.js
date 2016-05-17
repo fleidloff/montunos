@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(montuno)
         .then(data => data.json())
         .then(json => Montuno.from(addSearchOptions(Object.assign({ element: document.getElementById("canvas") }, json))).render())
-        .catch(err => console.error("something went wrong"));
+        .catch(err => console.error("something went wrong", err));
 });
 
 function addSearchOptions(props) {
