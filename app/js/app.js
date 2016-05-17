@@ -17,3 +17,8 @@ function addSearchOptions(props) {
     console.log(`"${root}" is not a valid root note. Using default...`);
     return props;
 }
+
+/*
+* TODO
+* add Montuno.from() method so that json files can be used for configuring montuno patterns
+ */
