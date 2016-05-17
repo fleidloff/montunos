@@ -14,6 +14,6 @@ function addSearchOptions(props) {
         });    
     }
 
-    console.log(`"${root}" is not a valid root note.`);
+    console.log(`"${root}" is not a valid root note. Using default...`);
     return props;
 }
