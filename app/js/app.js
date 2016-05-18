@@ -3,7 +3,7 @@ import * as qs from "./shared/querystring";
 import { isValidNoteName } from "./shared/validator";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const { montuno = "/montunos/1_montuno.json" } = qs.get();
+    const { montuno = "montunos/1_montuno.json" } = qs.get();
     fetch(montuno)
         .then(data => data.json())
         .then(json => Montuno.from(addSearchOptions(Object.assign({ element: document.getElementById("canvas") }, json))).render())
