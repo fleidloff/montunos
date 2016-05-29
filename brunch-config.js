@@ -2,7 +2,7 @@ module.exports = {
     files: {
         javascripts: {
             joinTo: {
-                "vendor.js": /^node_modules\//,
+                "vendor.js": /^node_modules|^bower_components\//,
                 "app.js": /^app\/js|^app\/montunos/,
                 "test.js": /^app\/test|^node_modules\//
             }
@@ -29,7 +29,8 @@ module.exports = {
         }, 
         assetsmanager: {
             copyTo: {
-                "montunos" : ["app/montunos/*"]
+                "montunos" : ["app/montunos/*"],
+                "bower_components" : ["bower_components/*"]
             },
             minTimeSpanSeconds: 10 // assets won"t be copied more frequent than once per X seconds.
         }

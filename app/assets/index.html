@@ -11,10 +11,44 @@
     <script src="DIGEST(vendor.js)"></script>
     <script src="DIGEST(app.js)"></script>
     <script>require("js/app");</script>
+    <link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html" />
+    <link rel="import" href="/bower_components/paper-item/paper-item.html" />
+    <link rel="import" href="/bower_components/paper-listbox/paper-listbox.html" />
 </head>
 <body>
     <h1>Montunos.de</h1>
     <h3>made with <a href="http://www.vexflow.com/">VexFLow</a></h3>
+
+    <paper-dropdown-menu label="Montuno">
+      <paper-listbox class="dropdown-content" id="montunos-listbox">
+        <paper-item>loading...</paper-item
+      </paper-listbox>
+    </paper-dropdown-menu>
+
+    <paper-dropdown-menu label="Key" id="key-dropdown">
+      <paper-listbox class="dropdown-content">
+        <paper-item>C</paper-item>
+        <paper-item>C#</paper-item>
+        <paper-item>Db</paper-item>
+        <paper-item>D</paper-item>
+        <paper-item>D#</paper-item>
+        <paper-item>Eb</paper-item>
+        <paper-item>E</paper-item>
+        <paper-item>F</paper-item>
+        <paper-item>F#</paper-item>
+        <paper-item>Gb</paper-item>
+        <paper-item>G</paper-item>
+        <paper-item>G#</paper-item>
+        <paper-item>Ab</paper-item>
+        <paper-item>A</paper-item>
+        <paper-item>A#</paper-item>
+        <paper-item>Bb</paper-item>
+        <paper-item>B</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu>
+
+    <br />
+
     <div class="canvas">
         <div class="description"></div><canvas width=800 height=140" id="canvas"></canvas>
     </div>
