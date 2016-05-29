@@ -5,7 +5,8 @@ import { montunos } from "./montunos";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const { montuno = `montunos/${montunos[0].file}` } = qs.get();
+    let { montuno = `${montunos[0].file}` } = qs.get();
+    montuno = `montunos/${montuno}`;
     fetch(montuno)
         .then(data => data.json())
         .then(json => Montuno.from(addSearchOptions(Object.assign({ element: document.getElementById("canvas") }, json))).render())
