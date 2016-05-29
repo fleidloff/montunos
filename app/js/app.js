@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(json => Montuno.from(addSearchOptions(Object.assign({ element: document.getElementById("canvas") }, json))).render())
         .catch(err => console.error("something went wrong", err));
     addMontunosTo(montunos)(document.getElementById("montunos-listbox"));
+    addEventListeners();
 });
 
 function addSearchOptions(props) {
@@ -28,8 +29,19 @@ function addSearchOptions(props) {
 function addMontunosTo(montunos) {
     return element => {
         element.innerHTML = montunos.map(montuno => `
-            <paper-item>${montuno.name}: ${montuno.file}</paper-item>
+            <paper-item value="${montuno.file}">${montuno.name}</paper-item>
         `).join("");
     }
-        
+}
+
+function addEventListeners() {
+    document.getElementById("key-listbox").addEventListener("iron-select", ev => {
+        const root = ev.target.selectedItem.innerHTML.trim().toLowerCase();
+        qs.update({ root });
+    });
+
+    document.getElementById("montunos-listbox").addEventListener("iron-select", ev => {
+        const montuno = ev.target.selectedItem.getAttribute("value");
+        qs.update({ montuno });
+    });
 }
