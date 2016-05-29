@@ -3,7 +3,7 @@ module.exports = {
         javascripts: {
             joinTo: {
                 "vendor.js": /^node_modules\//,
-                "app.js": /^app\/js/,
+                "app.js": /^app\/js|^app\/montunos/,
                 "test.js": /^app\/test|^node_modules\//
             }
         },
@@ -26,6 +26,12 @@ module.exports = {
         },
         eslint: {
             pattern: /^app\/js\/.*\.js?$/
+        }, 
+        assetsmanager: {
+            copyTo: {
+                "montunos" : ["app/montunos/*"]
+            },
+            minTimeSpanSeconds: 10 // assets won"t be copied more frequent than once per X seconds.
         }
     }
 };

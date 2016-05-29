@@ -18,7 +18,7 @@ export default class Montuno extends Props {
     }
 
     renderDescription() {
-        this.props.element.previousSibling.innerHTML = markdown.toHTML(noLeadingSpaces`${this.props.description}`);
+        this.props.element.previousSibling.innerHTML = "Key: " + this.props.scale.get("key") + "<br />" + markdown.toHTML(noLeadingSpaces`${this.props.description}`);
     }
 
     renderMontuno() {
