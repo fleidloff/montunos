@@ -15,7 +15,8 @@ function renderMontuno() {
 
     clearCanvas(canvas);
     
-    let { montuno = `${montunos[0].file}`, root } = qs.get();
+    let { montuno = `${montunos[0].file}` } = qs.get();
+    const { root } = qs.get();
     montuno = `montunos/${montuno}`;
 
     fetch(montuno)
@@ -28,7 +29,7 @@ function clearCanvas(canvas) {
     const context = canvas.getContext("2d");
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var w = canvas.width;
+    const w = canvas.width;
     canvas.width = 1;
     canvas.width = w;
 }
