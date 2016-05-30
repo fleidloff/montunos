@@ -5,8 +5,11 @@ export function get() {
     return qs.decode(window.location.search.replace("?", ""));
 }
 
-export function update(updatedSearch) {
-    const search = Object.assign({}, get(), updatedSearch);
-    console.log(search);
-    window.location.search = "?" + qs.encode(search);
+export function update(updatedData) {
+    const currentQuery = qs.encode(Object.assign({}, get(), updatedData));
+    setSearch(currentQuery);
+}
+
+export function setSearch(value) {
+    history.pushState(null, "", `?${value}`);
 }
