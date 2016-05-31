@@ -16,7 +16,7 @@ function renderMontuno() {
     clearCanvas(canvas);
     
     let { montuno = `${montunos[0].file}` } = qs.get();
-    const { root } = qs.get();
+    const { root = "C" } = qs.get();
     montuno = `montunos/${montuno}`;
 
     fetch(montuno)
